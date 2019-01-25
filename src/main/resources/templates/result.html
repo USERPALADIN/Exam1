@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        table {
+            text-align: center;
+            border-collapse: separate;
+            border: 1px solid #ddd;
+            border-spacing: 10px;
+            border-radius: 3px;
+            background: #fdfdfd;
+            font-size: 14px;
+            width: auto;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        th {
+            background: #E4E4E4;
+        }
+
+        caption {
+            font-style: italic;
+            text-align: right;
+            color: #547901;
+        }
+    </style>
+</head>
+<body>
+<table align="center">
+    <tr>
+        <td>
+            <p>Максимальное число</p>
+            <p th:text="${max}">   </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>Программа отработала (мс):</p>
+            <p th:text="${time}"> </p>
+        </td>
+    </tr>
+    <tr>
+        <form id="back" action="/" method="get">
+            <p>
+                <button type="submit">Назад</button>
+
+            </p>
+        </form>
+    </tr>
+</table>
+</body>
+</html>

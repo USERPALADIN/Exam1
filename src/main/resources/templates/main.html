@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <style>
+        table {
+            text-align: center;
+            border-collapse: separate;
+            border: 1px solid #ddd;
+            border-spacing: 10px;
+            border-radius: 3px;
+            background: #fdfdfd;
+            font-size: 14px;
+            width: auto;
+        }
+
+        td, th {
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        th {
+            background: #E4E4E4;
+        }
+
+        caption {
+            font-style: italic;
+            text-align: right;
+            color: #547901;
+        }
+    </style>
+</head>
+<body>
+
+<table align="center">
+    <tr>
+
+
+        <td>
+            <form id="generating" action="/generate" method="post">
+
+                <label for="elements">Введите количество элементов</label>
+                <input type="number" id="elements" name="elements"/>
+
+                <p>
+
+                    <button type="submit">Отправить</button>
+                </p>
+            </form>
+        </td>
+
+        <td>
+            <form id="writting" action="/write_to_file" method="post">
+
+                <label for="file"> Путь до файла </label>
+                <input type="text" id="file" name="file"/>
+
+                <p>
+                    <button type="submit">Записать в данный файл</button>
+
+                </p>
+            </form>
+        </td>
+        <td>
+
+            <form id="reading" action="/read_from_file" method="post">
+
+                <label for="fromFile"> Путь до файла </label>
+                <input type="text" id="fromFile" name="fromFile"/>
+
+                <p>
+                    <button type="submit">Прочитать из файла</button>
+                </p>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>
+
+            <form id="finding" action="/find_max" method="get">
+                <p>
+                    <button type="submit">Найти максимальное число</button>
+
+                </p>
+            </form>
+        </td>
+        <td>
+
+            <form id="findingMulti" action="/find_multi_max" method="post">
+                <label for="threads"> Количество потоков </label>
+                <input type="number" id="threads" name="threads"/>
+                <p>
+                    <button type="submit">Найти максимальное число (Потоки)</button>
+
+                </p>
+            </form>
+        </td>
+    </tr>
+
+</table>
+
+</body>
+</html>
