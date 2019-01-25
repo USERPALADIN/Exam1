@@ -35,18 +35,7 @@
 </head>
 <body>
 <table align="center">
-    <tr>
-        <td>
-            <p>Максимальное число</p>
-            <p th:text="${max}">   </p>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <p>Программа отработала (мс):</p>
-            <p th:text="${time}"> </p>
-        </td>
-    </tr>
+
     <tr>
         <form id="back" action="/" method="get">
             <p>
@@ -55,6 +44,26 @@
             </p>
         </form>
     </tr>
+    <tr>
+    <td>
+
+        <form id="saveResult" action="/save_result" method="post">
+            <p>Максимальное число</p>
+            <input type="text" readonly  id="max" name="max"  th:value="${max}" />
+
+
+            <p>Программа отработала (мс):</p>
+            <input type="text" readonly  id="time" name="time"  th:value="${time}" />
+
+            <label for="fileResult"> Имя файла </label>
+            <input type="text" id="fileResult" name="fileResult"/>
+            <p>
+                <button type="submit">Сохранить результаты</button>
+            </p>
+        </form>
+    </td>
+    </tr>
+
 </table>
 </body>
 </html>

@@ -18,7 +18,7 @@ public class MainController {
 	
 	private List<String> listEl = new ArrayList<>();
 	public static List<Integer> results = new ArrayList<>();
-	public static  volatile  long  time = 0;
+	public static volatile long time = 0;
 	
 	@GetMapping(value = "")
 	public String getMain() {
@@ -86,8 +86,8 @@ public class MainController {
 	
 	@PostMapping(value = "/find_multi_max")
 	public String findMultiMax(@RequestParam(name = "threads", required = false) String threads, Model model) throws InterruptedException {
-		 results.clear();
-		 
+		results.clear();
+		
 		int threadsEnd = Integer.parseInt(threads);
 		int minSize = 0;
 		int maxSize = listEl.size() / threadsEnd;
@@ -100,13 +100,13 @@ public class MainController {
 			
 			new Thread(new UtilFindMaxValue(minSize, maxSize, listEl)).start();
 			
-		
+			
 			minSize += maxSize;
 			maxSize += maxSize;
 		}
 		int resultMax = 0;
 		
-		 Thread.sleep(30000);
+		Thread.sleep(30000);
 		for (int i = 0; i < results.size(); i++) {
 			if (resultMax < results.get(i)) {
 				resultMax = results.get(i);
@@ -115,5 +115,25 @@ public class MainController {
 		model.addAttribute("max", String.valueOf(resultMax));
 		model.addAttribute("time", String.valueOf(String.valueOf(time)));
 		return "result";
+	}
+	
+	@PostMapping(value = "/save_result")
+	public String saveResut(
+			@RequestParam(name = "time", required = false) String time,
+			@RequestParam(name = "max", required = false) String max,
+			@RequestParam(name = "fileResult", required = false) String fileResult) {
+		
+		try (final FileWriter writer = new FileWriter(fileResult)) {
+			
+			writer.write(max);
+			writer.write(System.lineSeparator());
+			writer.write(time);
+			writer.write(System.lineSeparator());
+			
+			writer.write(System.lineSeparator());
+		} catch (IOException e) {
+		}
+		return "redirect:/";
+		
 	}
 }
